@@ -173,16 +173,16 @@ if __name__ == "__main__":
                 switch = False
                 x = 1
                 
-                while x <= mirror_count:
-                    if res.canceled == True:
-                        raise Exception ('CANCELED')
-                    
+                while x <= mirror_count:                   
                     url = res.get_mirror_url(get('title'), x, get('season'), get('episode'))
                     obj = http_GET(url)
                     
                     if obj != None and obj.has_key('Stream'):
                         m = re.search('<a href=\"(.+?)\"', str(obj['Stream']))
                         file_url = res.get_media_url(m.group(1))
+                        
+                        if res.canceled == True:
+                            raise Exception ('CANCELED')
                         
                         if file_url == None and switch == False:
                              c = re.search('<b>Mirror<\/b>: \d+\/(\d+)', str(obj['Replacement']))
