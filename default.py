@@ -105,7 +105,7 @@ def navigation():
         }
     ]
     
-    #print xbmcplugin.getSetting(const.ADDON_HANDLE, 'prefLanguage') 
+    #print const.LANG
     
     for item in navigation:
         if item['type'] == 'directory':
@@ -124,27 +124,31 @@ def search():
     d = dialog.input('Search', type=xbmcgui.INPUT_ALPHANUM)
     
     if type == "series":               
-        obj = http.get("%s/search.php?type=series&title=%s" % 
-            (const.SERVICE_URL, d));
+        obj = http.get("%s/search.php?type=series&title=%s&lang=%s" % 
+            (const.SERVICE_URL, d, const.LANG));
         
         for video in obj:
             item_list.append(
-                VideoItem(
-                    video['title'],
+                DirectoryItem(
+                    "%s [%s]" % (video['title'], 
+                        const.LANG_CODES[video['lang']]),
                     "%s?mode=seasons&title=%s" % 
                         (const.BASE_URL, video['urlTerm']),
                     "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                 )
             )   
     if type == 'documentations' or type == 'movies':
-        obj = http.get("%s/search.php?type=%s&title=%s" % 
-            (const.SERVICE_URL, type, d))
+        obj = http.get("%s/search.php?type=%s&title=%s&lang=%s" % 
+            (const.SERVICE_URL, type, d, const.LANG))
         
         for video in obj:
             item_list.append(
-                VideoItem(video['title'], 
-                "?mode=play&title=" + video['urlTerm'], 
-                "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm']))
+                VideoItem(
+                    "%s [%s]" % (video['title'], 
+                        const.LANG_CODES[video['lang']]),
+                    "?mode=play&title=" + video['urlTerm'], 
+                    "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
+                )
             )   
  
 def letter(letter):
@@ -153,26 +157,28 @@ def letter(letter):
     if letter == "%23":
         letter = 1
     if type == 'series':
-        obj = http.get("%s/?type=series&letter=%s" % 
-            (const.SERVICE_URL, letter))
+        obj = http.get("%s/?type=series&letter=%s&lang=%s" % 
+            (const.SERVICE_URL, letter, const.LANG))
     
         for video in obj:
             item_list.append(
                 DirectoryItem(
-                    video['title'],
+                    "%s [%s]" % (video['title'], 
+                        const.LANG_CODES[video['lang']]),
                     "%s?mode=seasons&title=%s" % 
                         (const.BASE_URL, video['urlTerm']),
                     "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                 )
             )
     elif (type == 'movies' or type == 'documentations'):
-        obj = http.get("%s/?type=%s&letter=%s" % 
-            (const.SERVICE_URL, type, letter))           
+        obj = http.get("%s/?type=%s&letter=%s&lang=%s" % 
+            (const.SERVICE_URL, type, letter, const.LANG))           
     
         for video in obj:
             item_list.append(
                 VideoItem(
-                    video['title'], 
+                    "%s [%s]" % (video['title'], 
+                        const.LANG_CODES[video['lang']]), 
                     "?mode=play&title=" + video['urlTerm'], 
                     "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                 )
