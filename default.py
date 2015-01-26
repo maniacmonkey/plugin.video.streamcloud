@@ -42,7 +42,7 @@ def get_params(parameterString):
     return commands
    
 def add_directory_item(item):
-    li = xbmcgui.ListItem(item.name, item.image)
+    li = xbmcgui.ListItem(label=item.title, thumbnailImage=item.image)
     xbmcplugin.addDirectoryItem(
         handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
         listitem=li, isFolder=True
@@ -50,7 +50,7 @@ def add_directory_item(item):
     pass
     
 def add_action_item(item):
-    li = xbmcgui.ListItem(item.name, item.image)
+    li = xbmcgui.ListItem(label=item.title, thumbnailImage=item.image)
     xbmcplugin.addDirectoryItem(
         handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
         listitem=li, isFolder=False
@@ -58,7 +58,7 @@ def add_action_item(item):
     pass
     
 def add_video_item(item):
-    li = xbmcgui.ListItem(item.title, item.image)
+    li = xbmcgui.ListItem(label=item.title, thumbnailImage=item.image)
     li.setProperty('IsPlayable', 'true')
     xbmcplugin.addDirectoryItem(
         handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
@@ -174,7 +174,7 @@ def letter(letter):
         obj = http.get("%s/?type=%s&letter=%s&lang=%s" % 
             (const.SERVICE_URL, type, letter, const.LANG))           
     
-        for video in obj:
+        for video in obj:          
             item_list.append(
                 VideoItem(
                     "%s [%s]" % (video['title'], 
