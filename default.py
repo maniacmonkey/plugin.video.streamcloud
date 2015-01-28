@@ -42,7 +42,7 @@ def get_params(parameterString):
     return commands
    
 def add_directory_item(item):
-    li = xbmcgui.ListItem(label=item.title, thumbnailImage=item.image)
+    li = xbmcgui.ListItem(label=item.name, thumbnailImage=item.image)
     xbmcplugin.addDirectoryItem(
         handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
         listitem=li, isFolder=True
@@ -50,7 +50,7 @@ def add_directory_item(item):
     pass
     
 def add_action_item(item):
-    li = xbmcgui.ListItem(label=item.title, thumbnailImage=item.image)
+    li = xbmcgui.ListItem(label=item.name, thumbnailImage=item.image)
     xbmcplugin.addDirectoryItem(
         handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
         listitem=li, isFolder=False
