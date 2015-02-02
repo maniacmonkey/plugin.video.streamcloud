@@ -189,8 +189,8 @@ class StreamCloud:
             for video in obj:
                 self.item_list.append(
                     DirectoryItem(
-                        "%s [%s]" % (video['title'], 
-                            const.LANG_CODES[video['lang']]),
+                        "%s [%s]" % (video['title'],
+                                     const.LANG_CODES[video['lang']]),
                         "%s?mode=seasons&title=%s" %
                         (const.BASE_URL, video['urlTerm']),
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
@@ -236,8 +236,8 @@ class StreamCloud:
         
     def episodes(self):
         try:
-            obj = http.get("%s/series/getEpisodes.php?title=%s&season=%s" % 
-                (const.SERVICE_URL, self.get('title'), self.get('season')))
+            obj = http.get("%s/series/getEpisodes.php?title=%s&season=%s" %
+                           (const.SERVICE_URL, self.get('title'), self.get('season')))
 
             if len(obj['episodes']):            
                 for episode in obj['episodes']:
@@ -249,9 +249,9 @@ class StreamCloud:
                         )
                     )
             else:
-                raise Exception ('Episodes not found')        
+                raise Exception('Episodes not found')
         except Exception, e:
-            print 'Streamcloud Error occured: %s' % e
+            print 'StreamCloud Error occurred: %s' % e
             dialog = xbmcgui.Dialog()
             dialog.ok("Error", "No Episodes hosted by StreamCloud in this Season")
         pass
@@ -296,7 +296,7 @@ class StreamCloud:
                 raise Exception('FILE_NOT_FOUND')
                 
         except Exception, e:
-            print 'Streamcloud Error occured: %s' % e
+            print 'StreamCloud Error occurred: %s' % e
             
             if str(e) == 'FILE_NOT_FOUND':
                 http.post(
