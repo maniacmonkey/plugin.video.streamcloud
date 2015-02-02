@@ -1,6 +1,5 @@
 import sys
 import re
-
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
@@ -101,11 +100,11 @@ class StreamCloud:
     def enter(self):
         self.item_list.append(
             DirectoryItem(
-                "Search", "?mode=search&type=" +  self.get('type'), 'DefaultFolder.png') 
+                "Search", "?mode=search&type=" + self.get('type'))
         )  
         self.item_list.append(
             DirectoryItem(
-                "A-Z", "?mode=az&type=" +  self.get('type'), 'DefaultFolder.png')
+                "A-Z", "?mode=az&type=" + self.get('type'))
         )
         pass
 
@@ -136,11 +135,11 @@ class StreamCloud:
         for item in navigation:
             if item['type'] == 'directory':
                 self.item_list.append(
-                    DirectoryItem(item['name'], item['query'], 'DefaultFolder.png') 
+                    DirectoryItem(item['name'], item['query'])
                 )
             elif item['type'] == 'action':
                 self.item_list.append(
-                    ActionItem(item['name'], item['query'], 'DefaultFolder.png')
+                    ActionItem(item['name'], item['query'])
                 )
         pass
         
@@ -206,7 +205,7 @@ class StreamCloud:
                     VideoItem(
                         "%s [%s]" % (video['title'],
                                      const.LANG_CODES[video['lang']]),
-                        "?mode=play&title=" + video['urlTerm'], 
+                        "?mode=play&title=" + video['urlTerm'],
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 ) 
@@ -217,8 +216,7 @@ class StreamCloud:
             self.item_list.append(
                 DirectoryItem(
                     letter, 
-                    "?mode=az&type=%s&letter=%s" % (self.get('type'), letter), 
-                    'DefaultFolder.png')
+                    "?mode=az&type=%s&letter=%s" % (self.get('type'), letter))
             )
         pass
         
@@ -231,8 +229,7 @@ class StreamCloud:
                 DirectoryItem(
                     "Season %s" % season,
                     "%s?mode=episodes&title=%s&season=%s" %
-                    (const.BASE_URL, self.get('title'), season),
-                    'DefaultFolder.png'
+                    (const.BASE_URL, self.get('title'), season)
                 )
             )
         pass
@@ -248,8 +245,7 @@ class StreamCloud:
                         VideoItem(
                             "Episode %s" % episode,
                             "%s?mode=play&title=%s&season=%s&episode=%s" %
-                            (const.BASE_URL, self.get('title'), self.get('season'), episode),
-                            "DefaultVideo.png"
+                            (const.BASE_URL, self.get('title'), self.get('season'), episode)
                         )
                     )
             else:
