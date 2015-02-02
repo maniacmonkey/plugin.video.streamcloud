@@ -2,6 +2,7 @@
 
 * code refactoring
 * reorganize project structure
+* add StreamCloud icon image to the add-on
 
 # Version 1.1.0
 
