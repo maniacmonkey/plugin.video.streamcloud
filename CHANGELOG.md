@@ -1,3 +1,8 @@
+# Version 1.1.1
+
+* code refactoring
+* reorganize project structure
+
 # Version 1.1.0
 
 * Add multi language support (DE, EN)
