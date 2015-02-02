@@ -3,7 +3,7 @@ import re
 import xbmcgui
 import xbmcplugin
 import xbmcaddon
-from resources.lib.resolver import StreamcloudResolver
+from resources.lib.url_resolver import StreamcloudResolver
 from resources.lib.items.directory_item import DirectoryItem
 from resources.lib.items.action_item import ActionItem
 from resources.lib.items.video_item import VideoItem

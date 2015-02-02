@@ -26,7 +26,7 @@ class StreamcloudResolver:
             content = response.read()
 
             if not re.search('id=\"btn_download\"', content):
-                raise Exception ('File Not Found or removed')
+                raise Exception('File Not Found or removed')
 
             # show dialog with progress bar
             p_dialog = xbmcgui.DialogProgress()
@@ -52,7 +52,6 @@ class StreamcloudResolver:
             ).read()
 
             r = re.search('file: "(.+?)",', content)
-
             p_dialog.close()
 
             if r:
@@ -61,4 +60,4 @@ class StreamcloudResolver:
                 raise Exception ('File Not Found or removed')
 
         except Exception, e:
-            print 'Streamcloud Error occured: %s' % e
+            print 'StreamCloud Error occurred: %s' % e
