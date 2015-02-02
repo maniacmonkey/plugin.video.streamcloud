@@ -50,19 +50,19 @@ class StreamCloud:
         xbmcplugin.endOfDirectory(const.ADDON_HANDLE)
         pass
         
-    def get_params(self, parameterString):
+    def get_params(self, parameter_string):
         commands = {}
-        splitCommands = parameterString[parameterString.find('?')+1:].split('&')
+        split_commands = parameter_string[parameter_string.find('?')+1:]\
+            .split('&')
         
-        for command in splitCommands: 
-            if (len(command) > 0):
-                splitCommand = command.split('=')
-                name = splitCommand[0]
-                value = splitCommand[1]
+        for command in split_commands:
+            if len(command) > 0:
+                split_command = command.split('=')
+                name = split_command[0]
+                value = split_command[1]
                 commands[name] = value
         
         return commands
-        
         
     def play_video(self, file_url):
         item = xbmcgui.ListItem(path=file_url)
@@ -133,8 +133,6 @@ class StreamCloud:
             }
         ]
         
-        #print const.LANG
-        
         for item in navigation:
             if item['type'] == 'directory':
                 self.item_list.append(
@@ -147,33 +145,33 @@ class StreamCloud:
         pass
         
     def search(self):
-        type =  self.get("type")
+        type = self.get("type")
         dialog = xbmcgui.Dialog()
         d = dialog.input('Search', type=xbmcgui.INPUT_ALPHANUM)
         
         if type == "series":               
-            obj = http.get("%s/search.php?type=series&title=%s&lang=%s" % 
-                (const.SERVICE_URL, d, const.LANG));
+            obj = http.get("%s/search.php?type=series&title=%s&lang=%s" %
+                           (const.SERVICE_URL, d, const.LANG))
             
             for video in obj:
                 self.item_list.append(
                     DirectoryItem(
-                        "%s [%s]" % (video['title'], 
-                            const.LANG_CODES[video['lang']]),
-                        "%s?mode=seasons&title=%s" % 
-                            (const.BASE_URL, video['urlTerm']),
+                        "%s [%s]" % (video['title'],
+                                     const.LANG_CODES[video['lang']]),
+                        "%s?mode=seasons&title=%s" %
+                        (const.BASE_URL, video['urlTerm']),
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 )   
         if type == 'documentations' or type == 'movies':
-            obj = http.get("%s/search.php?type=%s&title=%s&lang=%s" % 
-                (const.SERVICE_URL, type, d, const.LANG))
+            obj = http.get("%s/search.php?type=%s&title=%s&lang=%s" %
+                           (const.SERVICE_URL, type, d, const.LANG))
             
             for video in obj:
                 self.item_list.append(
                     VideoItem(
-                        "%s [%s]" % (video['title'], 
-                            const.LANG_CODES[video['lang']]),
+                        "%s [%s]" % (video['title'],
+                                     const.LANG_CODES[video['lang']]),
                         "?mode=play&title=" + video['urlTerm'], 
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
@@ -181,33 +179,33 @@ class StreamCloud:
         pass
      
     def letter(self, letter):
-        type =  self.get("type")
+        type = self.get("type")
 
         if letter == "%23":
             letter = 1
         if type == 'series':
-            obj = http.get("%s/?type=series&letter=%s&lang=%s" % 
-                (const.SERVICE_URL, letter, const.LANG))
+            obj = http.get("%s/?type=series&letter=%s&lang=%s" %
+                           (const.SERVICE_URL, letter, const.LANG))
         
             for video in obj:
                 self.item_list.append(
                     DirectoryItem(
                         "%s [%s]" % (video['title'], 
                             const.LANG_CODES[video['lang']]),
-                        "%s?mode=seasons&title=%s" % 
-                            (const.BASE_URL, video['urlTerm']),
+                        "%s?mode=seasons&title=%s" %
+                        (const.BASE_URL, video['urlTerm']),
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 )
-        elif (type == 'movies' or type == 'documentations'):
-            obj = http.get("%s/?type=%s&letter=%s&lang=%s" % 
-                (const.SERVICE_URL, type, letter, const.LANG))           
+        elif type == 'movies' or type == 'documentations':
+            obj = http.get("%s/?type=%s&letter=%s&lang=%s" %
+                           (const.SERVICE_URL, type, letter, const.LANG))
         
             for video in obj:          
                 self.item_list.append(
                     VideoItem(
-                        "%s [%s]" % (video['title'], 
-                            const.LANG_CODES[video['lang']]), 
+                        "%s [%s]" % (video['title'],
+                                     const.LANG_CODES[video['lang']]),
                         "?mode=play&title=" + video['urlTerm'], 
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
@@ -225,15 +223,15 @@ class StreamCloud:
         pass
         
     def seasons(self):
-        obj = http.get('%s/series/getSeasons.php?title=%s' % 
-            (const.SERVICE_URL, self.get('title')))
+        obj = http.get('%s/series/getSeasons.php?title=%s' %
+                       (const.SERVICE_URL, self.get('title')))
         
         for season in obj['seasons']:
             self.item_list.append(
                 DirectoryItem(
                     "Season %s" % season,
-                    "%s?mode=episodes&title=%s&season=%s" % 
-                        (const.BASE_URL, self.get('title'), season),
+                    "%s?mode=episodes&title=%s&season=%s" %
+                    (const.BASE_URL, self.get('title'), season),
                     'DefaultFolder.png'
                 )
             )
@@ -249,9 +247,8 @@ class StreamCloud:
                     self.item_list.append(
                         VideoItem(
                             "Episode %s" % episode,
-                            "%s?mode=play&title=%s&season=%s&episode=%s" % 
-                                (const.BASE_URL, self.get('title'), self.get('season'), 
-                                 episode),
+                            "%s?mode=play&title=%s&season=%s&episode=%s" %
+                            (const.BASE_URL, self.get('title'), self.get('season'), episode),
                             "DefaultVideo.png"
                         )
                     )
@@ -274,24 +271,24 @@ class StreamCloud:
             x = 1
             
             while x <= mirror_count:                   
-                url = res.get_mirror_url(self.get('title'), x, self.get('season'), 
-                    self.get('episode'))
+                url = res.get_mirror_url(self.get('title'), x, self.get('season'),
+                                         self.get('episode'))
                 obj = http.get(url)
                 
-                if obj != None and obj.has_key('Stream'):
+                if obj is not None and 'Stream' in obj:
                     m = re.search('<a href=\"(.+?)\"', str(obj['Stream']))
                     file_url = res.get_media_url(m.group(1))
                     
-                    if res.canceled == True:
-                        raise Exception ('CANCELED')
+                    if res.canceled is True:
+                        raise Exception('CANCELED')
                     
-                    if file_url == None and switch == False:
-                         c = re.search('<b>Mirror<\/b>: \d+\/(\d+)', 
-                            str(obj['Replacement']))
+                    if file_url is None and switch is False:
+                        c = re.search('<b>Mirror</b>: \d+/(\d+)',
+                                      str(obj['Replacement']))
                          
-                         if c:
+                        if c:
                             mirror_count = int(c.group(1))
-                         switch = True
+                        switch = True
 
                 if file_url:
                     self.play_video(file_url)
@@ -300,7 +297,7 @@ class StreamCloud:
                 x += 1              
 
             if not file_url:   
-                raise Exception ('FILE_NOT_FOUND')    
+                raise Exception('FILE_NOT_FOUND')
                 
         except Exception, e:
             print 'Streamcloud Error occured: %s' % e
@@ -308,7 +305,7 @@ class StreamCloud:
             if str(e) == 'FILE_NOT_FOUND':
                 http.post(
                     "%s/report.php" % const.SERVICE_URL, 
-                    {'type' : 'unknown', 'title' : self.get('title'), 'message' : '404'}
+                    {'type': 'unknown', 'title': self.get('title'), 'message': '404'}
                 )
                 dialog = xbmcgui.Dialog()
                 dialog.ok("StreamCloud", "File Not Found or removed")
