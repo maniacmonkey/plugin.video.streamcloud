@@ -272,7 +272,7 @@ class StreamCloud:
                 obj = http.get(url)
                 
                 if obj is not None and 'Stream' in obj:
-                    m = re.search('<a href=\"(.+?)\"', str(obj['Stream']))
+                    m = re.search('<a href="(.+?)"', str(obj['Stream']))
                     file_url = res.get_media_url(m.group(1))
                     
                     if res.canceled is True:
