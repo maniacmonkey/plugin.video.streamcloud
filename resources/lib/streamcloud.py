@@ -71,7 +71,7 @@ class StreamCloud:
     def add_directory_item(self, item):
         li = xbmcgui.ListItem(label=item.name, thumbnailImage=item.image)
         xbmcplugin.addDirectoryItem(
-            handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query, 
+            handle=const.ADDON_HANDLE, url=const.BASE_URL + item.query,
             listitem=li, isFolder=True
         )
         pass
@@ -157,8 +157,8 @@ class StreamCloud:
                     DirectoryItem(
                         "%s [%s]" % (video['title'],
                                      const.LANG_CODES[video['lang']]),
-                        "%s?mode=seasons&title=%s" %
-                        (const.BASE_URL, video['urlTerm']),
+                        "?mode=seasons&title=%s" %
+                        (video['urlTerm']),
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 )   
@@ -191,8 +191,8 @@ class StreamCloud:
                     DirectoryItem(
                         "%s [%s]" % (video['title'],
                                      const.LANG_CODES[video['lang']]),
-                        "%s?mode=seasons&title=%s" %
-                        (const.BASE_URL, video['urlTerm']),
+                        "?mode=seasons&title=%s" %
+                        (video['urlTerm']),
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 )
@@ -228,8 +228,8 @@ class StreamCloud:
             self.item_list.append(
                 DirectoryItem(
                     "Season %s" % season,
-                    "%s?mode=episodes&title=%s&season=%s" %
-                    (const.BASE_URL, self.get('title'), season)
+                    "?mode=episodes&title=%s&season=%s" %
+                    (self.get('title'), season)
                 )
             )
         pass
@@ -244,8 +244,8 @@ class StreamCloud:
                     self.item_list.append(
                         VideoItem(
                             "Episode %s" % episode,
-                            "%s?mode=play&title=%s&season=%s&episode=%s" %
-                            (const.BASE_URL, self.get('title'), self.get('season'), episode)
+                            "?mode=play&title=%s&season=%s&episode=%s" %
+                            (self.get('title'), self.get('season'), episode)
                         )
                     )
             else:
