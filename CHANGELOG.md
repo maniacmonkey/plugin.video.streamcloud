@@ -1,8 +1,13 @@
+# Version 1.2.0
+
+* Bug fix to remove duplicate BASE_URL in video and directory path
+* remove redundant character escaping
+
 # Version 1.1.1
 
-* code refactoring
-* reorganize project structure
-* add StreamCloud icon image to the add-on
+* Code refactoring
+* Reorganize project structure
+* Add StreamCloud icon image to the add-on
 
 # Version 1.1.0
 
