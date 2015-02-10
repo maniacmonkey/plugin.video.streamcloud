@@ -1,4 +1,4 @@
-# Version 1.2.0
+# Version 1.1.2
 
 * Bug fix to remove duplicate BASE_URL in video and directory path
 * remove redundant character escaping
