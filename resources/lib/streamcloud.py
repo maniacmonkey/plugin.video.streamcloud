@@ -299,10 +299,6 @@ class StreamCloud:
             print 'StreamCloud Error occurred: %s' % e
             
             if str(e) == 'FILE_NOT_FOUND':
-                http.post(
-                    "%s/report.php" % const.SERVICE_URL, 
-                    {'type': 'unknown', 'title': self.get('title'), 'message': '404'}
-                )
                 dialog = xbmcgui.Dialog()
                 dialog.ok("StreamCloud", "File Not Found or removed")
         pass
