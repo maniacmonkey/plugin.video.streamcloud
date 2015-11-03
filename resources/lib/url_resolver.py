@@ -12,7 +12,7 @@ class StreamcloudResolver:
         pass
 
     def get_mirror_url(self, title, mirror, season, episode):
-        url = "http://kinox.to/aGET/Mirror/%s&Hoster=30&Mirror=%s" % \
+        url = "http://kinox.tv/aGET/Mirror/%s&Hoster=30&Mirror=%s" % \
             (title, mirror)
 
         if season and episode:

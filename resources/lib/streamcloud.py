@@ -148,7 +148,7 @@ class StreamCloud:
         dialog = xbmcgui.Dialog()
         d = dialog.input('Search', type=xbmcgui.INPUT_ALPHANUM)
         
-        if type == "series":               
+        if type == "series" and d:
             obj = http.get("%s/search.php?type=series&title=%s&lang=%s" %
                            (const.SERVICE_URL, d, const.LANG))
             
@@ -162,7 +162,7 @@ class StreamCloud:
                         "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                     )
                 )   
-        if type == 'documentations' or type == 'movies':
+        if (type == 'documentations' or type == 'movies') and d:
             obj = http.get("%s/search.php?type=%s&title=%s&lang=%s" %
                            (const.SERVICE_URL, type, d, const.LANG))
             
