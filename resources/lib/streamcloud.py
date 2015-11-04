@@ -87,8 +87,8 @@ class StreamCloud:
         navigation = {
             '/': {
                 'Movies':                        '?view=movies',
-                'Series (source: kinox)':        '?view=series',
-                'Series (source: serienstream)': 'plugin://',
+                'Series (by kinox.to)':          '?view=series',
+                'Series (by serienstream.to)':   'plugin://plugin.video.serienstream/',
                 'Documentations':                '?view=documentations',
                 'Settings':                      '?view=settings&action=index',
             },
