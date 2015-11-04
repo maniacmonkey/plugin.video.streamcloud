@@ -5,7 +5,7 @@ import xbmcplugin
 from resources.lib.items.directory_item import DirectoryItem
 from resources.lib.items.action_item import ActionItem
 from resources.lib.items.video_item import VideoItem
-from resources.lib import const
+from resources.lib import const, http
 from resources.lib.movies import Movies
 from resources.lib.documentations import Documentations
 from resources.lib.series import Series
@@ -15,7 +15,7 @@ from resources.lib.player import Player
 
 class StreamCloud:
     def __init__(self):
-        params = self.get_params(sys.argv[2])
+        params = http.get_params(sys.argv[2])
         self.get = params.get
         self.item_list = []
         self.run()
@@ -50,20 +50,6 @@ class StreamCloud:
         instance = getattr(sys.modules[__name__], view.title())()
         return getattr(instance, action)(params)
         pass
-        
-    def get_params(self, parameter_string):
-        commands = {}
-        split_commands = parameter_string[parameter_string.find('?')+1:]\
-            .split('&')
-        
-        for command in split_commands:
-            if len(command) > 0:
-                split_command = command.split('=')
-                name = split_command[0]
-                value = split_command[1]
-                commands[name] = value
-        
-        return commands
 
     def add_directory_item(self, item):
         li = xbmcgui.ListItem(label=item.name, thumbnailImage=item.image)

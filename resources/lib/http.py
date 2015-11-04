@@ -22,3 +22,18 @@ def post(url, values):
     req = urllib2.Request(url, data)
     res = urllib2.urlopen(req)
     return res
+
+
+def get_params(parameter_string):
+    commands = {}
+    split_commands = parameter_string[parameter_string.find('?')+1:]\
+        .split('&')
+
+    for command in split_commands:
+        if len(command) > 0:
+            split_command = command.split('=')
+            name = split_command[0]
+            value = split_command[1]
+            commands[name] = value
+
+    return commands

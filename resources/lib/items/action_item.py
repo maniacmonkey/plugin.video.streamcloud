@@ -1,7 +1,7 @@
 class ActionItem:
-    def __init__(self, name=u'', query=u'', image=u'DefaultFolder'):
+    def __init__(self, name=u'', path=u'', image=u'DefaultFolder'):
         self.name = name
-        self.query = query
+        self.path = path
         self.image = image
         pass
         
