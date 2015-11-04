@@ -1,3 +1,7 @@
+# Version 1.2.0
+
+* move channels to its own classes for better maintenance
+
 # Version 1.1.4
 
 * clean up code

@@ -1,7 +1,7 @@
 import re
-import xbmc
 import urllib
 import urllib2
+import xbmc
 import xbmcgui
 
 
@@ -12,8 +12,7 @@ class StreamcloudResolver:
         pass
 
     def get_mirror_url(self, title, mirror, season, episode):
-        url = "http://kinox.tv/aGET/Mirror/%s&Hoster=30&Mirror=%s" % \
-            (title, mirror)
+        url = "http://kinox.tv/aGET/Mirror/%s&Hoster=30&Mirror=%s" % (title, mirror)
 
         if season and episode:
             url += '&Season=%s&Episode=%s' % (season, episode)
