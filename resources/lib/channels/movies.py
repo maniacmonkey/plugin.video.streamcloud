@@ -5,6 +5,7 @@ from resources.lib import const, http
 from resources.lib.items.directory_item import DirectoryItem
 from resources.lib.items.video_item import VideoItem
 
+
 class Movies:
     def __init__(self):
         self.item_list = []

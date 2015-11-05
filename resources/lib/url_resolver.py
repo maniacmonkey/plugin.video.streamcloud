@@ -56,7 +56,7 @@ class StreamcloudResolver:
             if r:
                 return r.group(1)
             else:
-                raise Exception ('File Not Found or removed')
+                raise Exception('File Not Found or removed')
 
         except Exception, e:
             print 'StreamCloud Error occurred: %s' % e

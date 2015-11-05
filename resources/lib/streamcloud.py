@@ -1,14 +1,15 @@
 import sys
 import re
+
 import xbmcgui
 import xbmcplugin
 from resources.lib.items.directory_item import DirectoryItem
 from resources.lib.items.action_item import ActionItem
 from resources.lib.items.video_item import VideoItem
 from resources.lib import const, http
-from resources.lib.movies import Movies
-from resources.lib.documentations import Documentations
-from resources.lib.series import Series
+from resources.lib.channels.movies import Movies
+from resources.lib.channels.documentations import Documentations
+from resources.lib.channels.series import Series
 from resources.lib.settings import Settings
 from resources.lib.player import Player
 
