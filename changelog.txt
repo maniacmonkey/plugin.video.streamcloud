@@ -1,7 +1,7 @@
 # Version 1.2.0
 
+* add new channel serienstream.to
 * move channels to its own classes for better maintenance
-* add channel serienstream.to 
 
 # Version 1.1.4
 

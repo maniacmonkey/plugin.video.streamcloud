@@ -2,6 +2,7 @@
 <addon id="plugin.video.streamcloud" name="StreamCloud" version="1.2.0" provider-name="rollov">
   <requires>
     <import addon="xbmc.python" version="2.1.0"/>
+    <import addon="plugin.video.serienstream" version="1.0.4" optional="true"/>
   </requires>
   <extension point="xbmc.python.pluginsource" library="default.py">
     <provides>video</provides>

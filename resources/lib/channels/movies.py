@@ -31,9 +31,8 @@ class Movies:
         for video in obj:
             self.item_list.append(
                 VideoItem(
-                    "%s [%s]" % (video['title'],
-                                 const.LANG_CODES[video['lang']]),
-                    "?view=play&title=" + video['urlTerm'],
+                    "%s [%s]" % (video['title'], const.LANG_CODES[video['lang']]),
+                    "?view=player&action=start&title=" + video['urlTerm'],
                     "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                 )
             )
@@ -47,8 +46,7 @@ class Movies:
         for video in obj:
             self.item_list.append(
                 VideoItem(
-                    "%s [%s]" % (video['title'],
-                                 const.LANG_CODES[video['lang']]),
+                    "%s [%s]" % (video['title'], const.LANG_CODES[video['lang']]),
                     "?view=player&action=start&title=" + video['urlTerm'],
                     "%s/thumbs/%s.jpg" % (const.SERVICE_URL, video['urlTerm'])
                 )

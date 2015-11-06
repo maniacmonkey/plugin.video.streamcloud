@@ -42,14 +42,16 @@ class StreamCloud:
                 self.add_video_item(item)
                 
         xbmcplugin.endOfDirectory(const.ADDON_HANDLE)
+        label = xbmcgui.ControlLabel(100, 250, 125, 75, 'Status', angle=45)
         pass
 
     def dispatch(self, view, action, params):
-        if view is None or action is None:
+        try:
+            instance = getattr(sys.modules[__name__], view.title())()
+            return getattr(instance, action)(params)
+        except Exception, e:
+            print "Dispatcher %s" % e
             return
-
-        instance = getattr(sys.modules[__name__], view.title())()
-        return getattr(instance, action)(params)
         pass
 
     def add_directory_item(self, item):
@@ -81,15 +83,15 @@ class StreamCloud:
         
     def navigation(self, view=u""):
         if view is None:
-            view = "/"
+            route = "/"
         else:
-            view = "/%s" % view
+            route = "/" + view
 
         navigation = {
             '/': {
                 'Movies':                        '?view=movies',
-                'Series (by kinox.to)':          '?view=series',
-                'Series (by serienstream.to)':   'plugin://plugin.video.serienstream/',
+                'Series':                        '?view=series',
+                'Browse Serienstream.to':        'plugin://plugin.video.serienstream/',
                 'Documentations':                '?view=documentations',
                 'Settings':                      '?view=settings&action=index',
             },
@@ -107,16 +109,19 @@ class StreamCloud:
             },
         }
 
-        if view not in navigation:
+        if const.LANG == '2':
+            navigation['/'].pop('Series (by serienstream.to)', None)
+
+        if route not in navigation:
             return
 
-        for key in sorted(navigation[view]):
+        for key in sorted(navigation[route]):
             if re.search('Settings', key):
                 self.item_list.append(
-                    ActionItem(key, navigation[view][key])
+                    ActionItem(key, navigation[route][key])
                 )
             else:
                 self.item_list.append(
-                    DirectoryItem(key, navigation[view][key])
+                    DirectoryItem(key, navigation[route][key])
                 )
         pass
