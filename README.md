@@ -4,7 +4,7 @@ Stream movies, series and documentations from StreamCloud.eu
 
 ## Installation
 
-There are two possible ways to install the video streaming add-on. I suggest to use my reposity to get always the newest version of the plugins.
+There are two possible ways to install the video streaming add-on. I suggest to use my repository to get always the latest version of the plugins.
 
 ### Install from my add-on repository (recommended)
 
