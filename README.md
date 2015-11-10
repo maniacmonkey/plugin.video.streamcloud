@@ -4,6 +4,14 @@ Stream movies, series and documentations from StreamCloud.eu
 
 ## Installation
 
+### Install from my add-on repository (recommended)
+
+Download the repo and follow the instructions in the README file. 
+
+https://github.com/rollov/repository.rollov
+
+### Install from ZIP
+
 1. Download the ZIP file from Git
 2. Start your XBMC
 3. Go to System -> Add-ons -> Install from zip file
