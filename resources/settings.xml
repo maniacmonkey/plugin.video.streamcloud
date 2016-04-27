@@ -1,5 +1,5 @@
 <settings> 
     <category label="30021">       
-        <setting default="1" id="prefLanguage" label="30002" type="enum" values="All|German|English" />
+        <setting default="1" id="prefLanguage" label="30002" type="enum" values="All|Spanish|English" />
     </category> 
 </settings>
